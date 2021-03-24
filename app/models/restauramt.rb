@@ -1,0 +1,2 @@
+class Restauramt < ApplicationRecord
+end
