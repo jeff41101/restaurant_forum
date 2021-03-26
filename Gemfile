@@ -6,6 +6,9 @@ ruby '2.3.3'
 # for gem devise
 gem 'devise'
 
+#fake docs
+gem 'ffaker'
+
 #carrierwave gem
 gem 'carrierwave'
 
