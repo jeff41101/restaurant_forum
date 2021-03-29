@@ -5,5 +5,5 @@ class Restaurant < ApplicationRecord
   mount_uploader :image, PhotoUploader
   
   #確認資料有填寫
-  validates_presence_of :name, :opening_hours, :tel, :address, :description, :image
+  validates_presence_of :name, :opening_hours, :tel, :address, :description
 end
