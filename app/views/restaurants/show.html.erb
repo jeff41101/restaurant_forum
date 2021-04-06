@@ -8,6 +8,8 @@
     <div class="col-md-4">
       <% if @restaurant.image.url %>
       <%= image_tag @restaurant.image.url, class: "img-responsive center-block" %>
+      <% else %>
+      <img src="http://via.placeholder.com/350x350" class="img-responsive img-rounded">
       <% end %>
       <br>
       <div class="well">
@@ -36,12 +38,21 @@
   <div class="row">
     <% @restaurant.comments.each do |comment| %>
       <div>
-        <h4><%= comment.user.email.split('@')[0] %></h4>
+        <h4><%= comment.user.email.name %></h4>
         <p><%= simple_format comment.content %></p>
         <p class="text-muted">
-          <em><%= time_ago_in_words(comment.created_at) %></em>
+          <em>
+            <%= time_ago_in_words(comment.created_at) %>
+            ago 
+            <!--show delete button to user  is admin -->
+            <% if current_user.admin? %>
+              -
+              <%= link_to "Delete", restaurant_comment_path(@restaurant, comment), method: :delete %>
+            <% end %>
+          </em>
         </p>
       </div>
+      
     <% end %>
    
     <br>

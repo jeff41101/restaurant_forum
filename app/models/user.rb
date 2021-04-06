@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates_presence_of :name
+  mount_uploader :avatar, AvatarUploader
+
+  
   has_many :comments
 
   def admin?
