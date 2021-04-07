@@ -7,9 +7,9 @@
 
     <div class="col-md-4">
       <% if @restaurant.image.url %>
-      <%= image_tag @restaurant.image.url, class: "img-responsive center-block" %>
+        <%= image_tag @restaurant.image.url, class: "img-responsive center-block" %>
       <% else %>
-      <img src="http://via.placeholder.com/350x350" class="img-responsive img-rounded">
+        <img src="http://via.placeholder.com/350x350" class="img-responsive img-rounded">
       <% end %>
       <br>
       <div class="well">
@@ -20,6 +20,7 @@
         </ul>
       </div>
     </div>
+    
     <div class="col-md-8">
       <%= simple_format @restaurant.description %>
     </div>
@@ -38,7 +39,7 @@
   <div class="row">
     <% @restaurant.comments.each do |comment| %>
       <div>
-        <h4><%= comment.user.email.name %></h4>
+        <h4><%= comment.user.name %></h4>
         <p><%= simple_format comment.content %></p>
         <p class="text-muted">
           <em>
