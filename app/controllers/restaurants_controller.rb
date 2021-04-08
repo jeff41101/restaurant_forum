@@ -25,14 +25,14 @@ class RestaurantsController < ApplicationController
     #create relations (user_id and restaurant_id)
     @restaurant.favorites.create!(user: current_user)
     #back to last the page with default page
-    @restaurant.count_favorites
+
     redirect_back(fallback_location: root_path)
   end
 
   def unfavorite
     favorite = Favorite.where(restaurant: @restaurant, user: current_user).first
     favorite.destroy
-    @restaurant.count_favorites
+
     redirect_back(fallback_location: root_path)
   end
 
