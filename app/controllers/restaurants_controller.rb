@@ -32,13 +32,13 @@ class RestaurantsController < ApplicationController
 
   def like
     #create relations (user_id and restaurant_id)
-    @restaurant.favorites.create!(user: current_user)
+    @restaurant.likes.create!(user: current_user)
     #back to last the page with default page
     redirect_back(fallback_location: root_path)
   end
 
   def unlike
-    likes = Likes.where(restaurant: @restaurant, user: current_user).first
+    likes = Like.where(restaurant: @restaurant, user: current_user).first
     likes.destroy
     redirect_back(fallback_location: root_path)
   end
