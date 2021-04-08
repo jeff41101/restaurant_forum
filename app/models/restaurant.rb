@@ -11,4 +11,8 @@ class Restaurant < ApplicationRecord
   
   #確認資料有填寫
   validates_presence_of :name, :opening_hours, :tel, :address, :description
+
+  def is_favorited?(user)
+    self.favorited_users.include?(user)
+  end
 end
