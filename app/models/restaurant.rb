@@ -9,6 +9,9 @@ class Restaurant < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
   
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
+  
   #確認資料有填寫
   validates_presence_of :name, :opening_hours, :tel, :address, :description
 
