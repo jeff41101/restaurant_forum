@@ -14,6 +14,10 @@ class RestaurantsController < ApplicationController
     @recent_comments = Comment.order(created_at: :desc).limit(10)
   end
 
+  def ranking
+    @restaurants = Restaurant.order(favorites_count: :desc).limit(10)
+  end
+
   def dashboard
   end
 
@@ -21,12 +25,14 @@ class RestaurantsController < ApplicationController
     #create relations (user_id and restaurant_id)
     @restaurant.favorites.create!(user: current_user)
     #back to last the page with default page
+    @restaurant.count_favorites
     redirect_back(fallback_location: root_path)
   end
 
   def unfavorite
     favorite = Favorite.where(restaurant: @restaurant, user: current_user).first
     favorite.destroy
+    @restaurant.count_favorites
     redirect_back(fallback_location: root_path)
   end
 
