@@ -8,13 +8,7 @@ class Restaurant < ApplicationRecord
   
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
-
+  
   #確認資料有填寫
   validates_presence_of :name, :opening_hours, :tel, :address, :description
-
-
-  def is_favorited?(user)
-    self.favorited_users.include?(user)
-  end
-  
 end
