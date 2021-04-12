@@ -13,6 +13,7 @@ class FollowshipsController < ApplicationController
   end
 
   def destroy
-    
+    @followship = current_user.followships.where(following_id: params[:id]).first
+    @followship.destroy
   end
 end
