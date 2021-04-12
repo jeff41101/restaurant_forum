@@ -1,10 +1,14 @@
 <ul>
 
   <% @users.each do |user| %>
-    <li>
+    <% if user.avatar.url %>
+        <%= image_tag user.avatar.url, width: '200px' %>
+      <% else %>
+        <img src="http://via.placeholder.com/200x200" class="img-responsive img-rounded">
+      <% end %>
+    <li>  
       <%= user.name %>
-      <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
-      <%= link_to 'Unfollow', followship_path(user), method: :delete %>
+      <%= render partial: "shared/follow", locals: {user: user} %>
     </li>
   <% end %>
 
