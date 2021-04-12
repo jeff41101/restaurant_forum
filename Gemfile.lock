@@ -142,6 +142,7 @@ GEM
     nokogiri (1.10.10-x86-mingw32)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    pg (0.21.0-x86-mingw32)
     public_suffix (4.0.6)
     puma (3.12.6)
     rack (2.2.3)
@@ -247,6 +248,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
+  pg (~> 0.20)
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.5)
   sass-rails (~> 5.0)
