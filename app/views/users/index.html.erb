@@ -1,19 +1,3 @@
-<ul>
-
-  <% @users.each do |user| %>
-    <% if user.avatar.url %>
-        <%= image_tag user.avatar.url, width: '200px' %>
-      <% else %>
-        <img src="http://via.placeholder.com/200x200" class="img-responsive img-rounded">
-      <% end %>
-    <li>  
-      <%= user.name %>
-      <%= render partial: "shared/follow", locals: {user: user} %>
-    </li>
-  <% end %>
-
-</ul>
-
 <div class="container">
   <div class="row">
 
@@ -45,17 +29,20 @@
     </div>
 
     <% @users.each do |user| %>
-      <div class="col-md-3 col-sm-4 col-xs-6 text-center user-item">
+      <div class="col-md-3 col-sm-4 col-xs-6">
 
         <%= link_to user_path(user) do %>
           <% if user.avatar.url %>
-            <%= image_tag user.avatar.url, class: "img-rounded" %>
+            <%= image_tag user.avatar.url, height: 200, width:200, class: "img-responsive img-rounded" %>
           <% else %>
-            <img src="http://via.placeholder.com/200x200" class="img-responsive img-rounded">
+            <img src=" http://via.placeholder.com/280x280 " class="img-responsive img-rounded">
           <% end %>
-          <h4><%= user.name %></h4>
         <% end %>
-        <%= render partial: "shared/follow", locals: {user: user} %>
+        <div class = "text-center user-item">
+          <h4><%= user.name %></h4>
+          <%= render partial: "shared/follow", locals: {user: user} %>
+          <%= render partial: "shared/friend", locals: {user: user} %>
+        </div>
 
       </div>
     <% end %>

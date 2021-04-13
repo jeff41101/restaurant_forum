@@ -18,10 +18,10 @@ namespace :dev do
   end
 
   task fake_user: :environment do
-
+    User.destroy_all
     20.times do |i|
       User.create!(
-        name: user_name,
+        name: "dummy",
         email: FFaker::Internet.email,
         password: FFaker::Internet.password
       )

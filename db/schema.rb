@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_004232) do
+ActiveRecord::Schema.define(version: 2021_04_13_065237) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 2021_04_12_004232) do
     t.integer "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "friend_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -69,7 +76,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_004232) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
+    t.string "name", default: "dummy"
     t.text "intro"
     t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true

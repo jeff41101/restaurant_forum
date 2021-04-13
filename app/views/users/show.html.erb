@@ -28,6 +28,7 @@
           <div><%= simple_format @user.intro %></div>
           <% if @user.email == current_user.email %>
             <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
+            <%= link_to 'Friend List', friend_list_user_path(@user), class: "btn btn-primary" %>
           <% end %>
         </div>
         <div class="clearfix"></div>
@@ -46,7 +47,11 @@
             <% @followings.each do |following| %>
             <li class="list-group-item">
               <%= link_to user_path(following) do %>
-              <%= image_tag(following.avatar, height: 30, width: 30, class: "img-circle") %>
+              <% if following.avatar.url %>
+                <%= image_tag following.avatar.url, class: "img-responsive center-block" %>
+              <% else %>
+                <img src="http://via.placeholder.com/30x30" class="img-responsive img-rounded">
+              <% end %>
               <%= following.name %>
               <% end %>
             </li>
@@ -64,7 +69,11 @@
             <% @followers.each do |follower| %>
             <li class="list-group-item">
               <%= link_to user_path(follower) do %>
-              <%= image_tag(follower.avatar.url, height: 30, width: 30, class: "img-circle") %>
+              <% if follower.avatar.url %>
+                <%= image_tag follower.avatar.url, height: 30, width: 30, class: "img-circle" %>
+              <% else %>
+                <img src="http://via.placeholder.com/30x30" class="img-responsive img-rounded">
+              <% end %>
               <%= follower.name %>
               <% end %>
             </li>
@@ -109,7 +118,11 @@
                 <div class="my-restaurant">
                   <div>
                     <%= link_to restaurant_path(restaurant) do %>
-                      <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+                      <% if restaurant.image.url %>
+                        <%= image_tag restaurant.image.url, width: '100px', height: '100px',class: "img-responsive img-rounded" %>
+                      <% else %>
+                        <%= image_tag "http://via.placeholder.com/100x100", class: "img-rounded" %>
+                      <% end %>
                       <h5><%= restaurant.name %></h5>
                     <% end %>
                   </div>

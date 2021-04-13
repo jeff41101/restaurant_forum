@@ -26,6 +26,13 @@ class User < ApplicationRecord
   has_many :inverser_followships, class_name: "Followship", foreign_key: "following_id"
   has_many :followers, through: :inverser_followships, source: :user
 
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+
+  # source -> the key that needs to be returned (friend-> friend_id)
+  has_many :inverser_friendships, class_name: "Friendship", foreign_key: "friend_id" 
+  has_many :frienders, through: :inverser_friendships, source: :friend
+
   def admin?
     self.role == "admin"
   end
@@ -33,6 +40,10 @@ class User < ApplicationRecord
   #check the following status
   def following?(user)
     self.followings.include?(user)
+  end
+
+  def friend?(user)
+    self.friends.include?(user)
   end
   
 end

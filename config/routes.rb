@@ -22,8 +22,13 @@ Rails.application.routes.draw do
   end
   resources :categories, only: :show
   resources :followships, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy]
 
-  resources :users, only: [:index, :edit, :show, :update]
+  resources :users, only: [:index, :edit, :show, :update] do
+    member do
+      get :friend_list
+    end
+  end
   root "restaurants#index" 
 
   namespace :admin do
